@@ -10,11 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@arcjet/node": "^1.0.0-alpha.34",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.9.2",
     "nanoid": "^5.0.9",
     "nodemon": "^3.1.9"
+  },
+  "volta": {
+    "node": "23.6.1"
   }
 }

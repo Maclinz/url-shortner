@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connect from "./src/db/connect.js";
 import fs from "fs";
 import cors from "cors";
+import blockBots from "./src/middleware/blockBots.js";
 
 dotenv.config();
 
@@ -17,6 +18,10 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", blockBots, (req, res) => {
+  res.send("Welcome to the URL shortener API");
+});
 
 const routes = fs.readdirSync("./src/routes");
 

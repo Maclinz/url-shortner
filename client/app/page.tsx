@@ -46,10 +46,16 @@ export default function Home() {
     const getAllLinks = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/v1/all");
-        console.log("All links: ", res.data);
-        setAllLinks(res.data);
+        if (res.data && typeof res.data === "object") {
+          console.log("All links: ", res.data);
+          setAllLinks(res.data);
+        } else {
+          console.error("Unexpected response format: ", res);
+          toast.error("Failed to fetch links. Please try again.");
+        }
       } catch (error) {
         console.log("Error fetching all links: ", error);
+        toast.error("Error fetching data. Please refresh.");
       }
     };
 

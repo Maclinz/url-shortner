@@ -1,6 +1,9 @@
 import express from "express";
 import { customAlphabet } from "nanoid";
 import ShortenLink from "../Models/ShortenLink.js";
+import protect from "../middleware/protect.js";
+import validateEmail from "../middleware/validateEmail.js";
+import firewall from "../middleware/firewall.js";
 
 const router = express.Router();
 
@@ -10,7 +13,7 @@ const generateShortUrl = () => {
   return shortUrl();
 };
 
-router.post("/shorten", async (req, res) => {
+router.post("/shorten", protect, async (req, res) => {
   try {
     const { url, email } = req.body;
 
@@ -34,7 +37,7 @@ router.post("/shorten", async (req, res) => {
 });
 
 // get all links
-router.get("/all", async (req, res) => {
+router.get("/all", protect, async (req, res) => {
   try {
     // Get the total number of links
     const totalLinks = await ShortenLink.countDocuments();

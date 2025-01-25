@@ -1,4 +1,5 @@
 "use client";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 }
 
 function Page({ params }: Props) {
-  const { shortUrl } = params;
+  const { shortUrl } = useParams();
 
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
